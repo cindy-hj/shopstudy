@@ -5,20 +5,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.model.Advert;
+import com.shop.model.Event;
 import com.shop.model.Items;
 import com.shop.service.AdvertService;
+import com.shop.service.EventService;
 import com.shop.service.ItemService;
 
 @RestController
+@CrossOrigin("*")
 public class MainPageController {
 	@Autowired
 	private ItemService itemService;
 	@Autowired
 	private AdvertService advertService;
+	@Autowired
+	private EventService eventService;
 	
 	@GetMapping("/api/items/gettop")
 	public ResponseEntity getTop() {
@@ -60,4 +66,9 @@ public class MainPageController {
 		return new ResponseEntity<>(adverts, HttpStatus.OK);
 	}
 	
+	@GetMapping("/api/main/events")
+	public ResponseEntity getMainEvents() {
+		List<Event> events = eventService.getEvents("1");
+		return new ResponseEntity<>(events, HttpStatus.OK);
+	}
 }

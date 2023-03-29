@@ -55,5 +55,19 @@ public class ItemService {
 		List<Items> items = itemsRepository.findByIdIn(itemIds);
 		return items;
 	}
+
+	public List<Items> findAll() {
+		
+		return itemsRepository.findAll();
+	}
+
+	public Items findById(Integer id) {
+
+		return itemsRepository.findById(id).get();
+	}
+
+	public List<Items> findByIdIn(List<Integer> itemIds) {
+		return itemsRepository.findByIdIn(itemIds);
+	}
 	
 }

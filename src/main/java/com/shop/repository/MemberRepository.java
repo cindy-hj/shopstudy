@@ -6,4 +6,7 @@ import com.shop.model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
+	Member findByIdNameAndPassword(String idname, String password);
+	
+
 }
